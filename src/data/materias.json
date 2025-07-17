@@ -1,0 +1,267 @@
+[
+    {
+       "id" : 1,
+       "nombre" : "Taller Interdisciplinario de Introducción a la Ingeniería (TI³)",
+       "previas" : [],
+       "creditos" : 18,
+       "tipo" : null ,
+       "semestre" : 1
+    },
+    {
+       "id" : 2,
+       "nombre" : "Programación I",
+       "previas" : [],
+       "creditos" : 12,
+       "tipo" : null,
+       "semestre" : 1
+    },
+    {
+       "id" : 3,
+       "nombre" : "Álgebra Lineal",
+       "previas" : [],
+       "creditos" : 8,
+       "tipo" : null,
+       "semestre" : 2
+    },
+    {
+       "id" : 4,
+       "nombre" : "Cálculo I",
+       "previas" : [],
+       "creditos" : 8,
+       "tipo" : null,
+       "semestre" : 2
+    },
+    {
+       "id" : 5,
+       "nombre" : "Base de Datos I",
+       "previas" : ["Programación I"],
+       "creditos" : 6,
+       "tipo" : null,
+       "semestre" : 2
+    },
+    {
+       "id" : 6,
+       "nombre" : "Programación Científica y Técnica",
+       "previas" : ["Programación I"],
+       "creditos" : null,
+       "tipo" : null,
+       "semestre" : 2
+    },
+    {
+       "id" : 7,
+       "nombre" : "Probabilidad y Estadística",
+       "previas" : ["Cálculo I"],
+       "creditos" : null,
+       "tipo" : null,
+       "semestre" : 3
+    },
+    {
+       "id" : 8,
+       "nombre" : "Visualización de Datos",
+       "previas" : [],
+       "creditos" : null,
+       "tipo" : null,
+       "semestre" : 2
+    },
+    {
+       "id" : 9,
+       "nombre" : "Matemática discreta I",
+       "previas" : [],
+       "creditos" : null,
+       "tipo" : null,
+       "semestre" : 3
+    },
+    {
+       "id" : 10,
+       "nombre" : "Matemáticas para Aprendizaje automático",
+       "previas" : ["Algebra Lineal", "Cálculo I"],
+       "creditos" : null,
+       "tipo" : null 
+    },
+    {
+       "id" : 11,
+       "nombre" : "Reto en Inteligencia Artificial y Ciencia de Datos I",
+       "previas" : ["Programación Científica y Técnica", "Visualización de Datos"],
+       "creditos" : null,
+       "tipo" : null 
+    },
+    {
+       "id" : 12,
+       "nombre" : "Algoritmos avanzados de búsqueda y optimización",
+       "previas" : ["Matemática discreta I"],
+       "creditos" : null,
+       "tipo" : null,
+       "semestre" : 4
+    },
+    {
+       "id" : 13,
+       "nombre" : "Machine Learning",
+       "previas" : ["Matemáticas para Aprendizaje automático", "Programación Científica y Técnica"],
+       "creditos" : null,
+       "tipo" : null,
+       "semestre" : 4
+    },
+    {
+       "id" : 14,
+       "nombre" : "Microprocesadores",
+       "previas" : [],
+       "creditos" : 12,
+       "tipo" : null,
+       "semestre" : 3
+    },
+    {
+       "id" : 15,
+       "nombre" : "Ingeniería de Datos",
+       "previas" : ["Programación Científica y Técnica", "Visualización de Datos", "Probabilidad y Estadística"],
+       "creditos" : null,
+       "tipo" : null,
+       "semestre" : 4
+    },
+    {
+       "id" : 16,
+       "nombre" : "Deep Learning",
+       "previas" : ["Machine Learning"],
+       "creditos" : null,
+       "tipo" : null 
+    },
+    {
+       "id" : 17,
+       "nombre" : "Inteligencia Artificial Simbólica",
+       "previas" : ["Programación Científica y Técnica", "Matemática discreta I"],
+       "creditos" : null,
+       "tipo" : null 
+    },
+    {
+       "id" : 18,
+       "nombre" : "Redes de Datos",
+       "previas" : [],
+       "creditos" : null,
+       "tipo" : null 
+    },
+    {
+       "id" : 19,
+       "nombre" : "Business Intelligence",
+       "previas" : ["Visualización de Datos"],
+       "creditos" : null,
+       "tipo" : null 
+    },
+    {
+       "id" : 20,
+       "nombre" : "Reto en Inteligencia Artificial y Ciencia de Datos II",
+       "previas" : ["Machine Learning", "Ingeniería de Datos"],
+       "creditos" : null,
+       "tipo" : null 
+    },
+    {
+       "id" : 21,
+       "nombre" : "Visión por computadora (Computer Vision)",
+       "previas" : ["Deep Learning"],
+       "creditos" : null,
+       "tipo" : null 
+    },
+    {
+       "id" : 22,
+       "nombre" : "Procesamiento de Lenguaje Natural (Natural Language Processing)",
+       "previas" : ["Deep Learning"],
+       "creditos" : null,
+       "tipo" : null 
+    },
+    {
+       "id" : 23,
+       "nombre" : "Marco Regulatorio y Legal en Inteligencia Artificial",
+       "previas" : [],
+       "creditos" : null,
+       "tipo" : null 
+    },
+    {
+       "id" : 24,
+       "nombre" : "Equidad, Rendición de Cuentas, y Transparencia en Algoritmos",
+       "previas" : ["Reto en Inteligencia Artificial y Ciencia de Datos II"],
+       "creditos" : null,
+       "tipo" : null 
+    },
+    {
+       "id" : 25,
+       "nombre" : "Reto en Inteligencia Artificial y Ciencia de Datos III",
+       "previas" : ["Deep Learning", "Equidad, Rendición de Cuentas, y Transparencia en Algoritmos"],
+       "creditos" : null,
+       "tipo" : null 
+    },
+    {
+       "id" : 26,
+       "nombre" : "Machine Learning Operations & Data Operations",
+       "previas" : ["Machine Learning", "Ingeniería de Datos", "Redes de Datos"],
+       "creditos" : null,
+       "tipo" : null 
+    },
+    {
+       "id" : 27,
+       "nombre" : "Seguridad y privacidad",
+       "previas" : ["Programación Científica y Técnica"],
+       "creditos" : null,
+       "tipo" : null 
+    },
+    {
+       "id" : 28,
+       "nombre" : "Cloud Computing",
+       "previas" : ["Base de Datos I", "Redes de Datos"],
+       "creditos" : null,
+       "tipo" : null 
+    },
+    {
+       "id" : 29,
+       "nombre" : "Ética profesional en ingeniería",
+       "previas" : ["Marco Regulatorio y Legal en Inteligencia Artificial"],
+       "creditos" : null,
+       "tipo" : null 
+    },
+    {
+       "id" : 30,
+       "nombre" : "Aplicaciones de Inteligencia Artificial y Ciencia de Datos",
+       "previas" : ["Visión por computadora (Computer Vision)", "Procesamiento de Lenguaje Natural (Natural Language Processing)", "Ingeniería de Datos"],
+       "creditos" : null,
+       "tipo" : null 
+    },
+    {
+       "id" : 31,
+       "nombre" : "Ingeniería de Software para Inteligencia Artificial",
+       "previas" : ["Base de Datos I"],
+       "creditos" : null,
+       "tipo" : null 
+    },
+    {
+       "id" : 32,
+       "nombre" : "Gestión de Proyectos",
+       "previas" : ["Reto en Inteligencia Artificial y Ciencia de Datos II"],
+       "creditos" : null,
+       "tipo" : null 
+    },
+    {
+       "id" : 33,
+       "nombre" : "Metodología de la Investigación",
+       "previas" : ["Reto en Inteligencia Artificial y Ciencia de Datos III"],
+       "creditos" : null,
+       "tipo" : null 
+    },
+    {
+       "id" : 34,
+       "nombre" : "Temas Avanzados en Inteligencia Artificial",
+       "previas" : ["Ingeniería de Datos", "Deep Learning"],
+       "creditos" : null,
+       "tipo" : null 
+    },
+    {
+       "id" : 35,
+       "nombre" : "Trabajo Final de Grado",
+       "previas" : ["Reto en Inteligencia Artificial y Ciencia de Datos III", "270 créditos aprobados"],
+       "creditos" : null,
+       "tipo" : null 
+    },
+    {
+       "id" : 36,
+       "nombre" : "Gestión Organizacional",
+       "previas" : [],
+       "creditos" : null,
+       "tipo" : null 
+    }
+]
