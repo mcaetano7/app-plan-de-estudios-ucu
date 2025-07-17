@@ -4,7 +4,6 @@ export default function FormularioElectivas({ onAgregar, onCancelar }) {
   const [nombre, setNombre] = useState("");
   const [creditos, setCreditos] = useState("");
   const [semestre, setSemestre] = useState("");
-  const [previas, setPrevias] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,10 +18,7 @@ export default function FormularioElectivas({ onAgregar, onCancelar }) {
       nombre: nombre.trim(),
       creditos: creditos ? Number(creditos) : undefined,
       semestre: semestre ? Number(semestre) : undefined,
-      previas: previas
-        .split(",")
-        .map((p) => p.trim())
-        .filter((p) => p !== ""),
+      previas: [],
     };
 
     onAgregar(nuevaMateria);
@@ -37,7 +33,7 @@ export default function FormularioElectivas({ onAgregar, onCancelar }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-white text-black p-6 rounded shadow mb-6 max-w-md"
+      className="bg-purple-300 text-black p-6 rounded shadow mb-6 max-w-md"
     >
       <h2 className="text-xl font-bold mb-4">Agregar materia electiva</h2>
 
@@ -47,7 +43,7 @@ export default function FormularioElectivas({ onAgregar, onCancelar }) {
           type="text"
           value={nombre}
           onChange={(e) => setNombre(e.target.value)}
-          className="w-full border p-2 rounded"
+          className="w-full border p-2 rounded text-purple-600"
           required
         />
       </div>
@@ -58,7 +54,7 @@ export default function FormularioElectivas({ onAgregar, onCancelar }) {
           type="number"
           value={creditos}
           onChange={(e) => setCreditos(e.target.value)}
-          className="w-full border p-2 rounded"
+          className="w-full border p-2 rounded text-purple-600"
         />
       </div>
 
@@ -68,18 +64,7 @@ export default function FormularioElectivas({ onAgregar, onCancelar }) {
           type="number"
           value={semestre}
           onChange={(e) => setSemestre(e.target.value)}
-          className="w-full border p-2 rounded"
-        />
-      </div>
-
-      <div className="mb-4">
-        <label className="block mb-1">Previas (separadas por coma)</label>
-        <input
-          type="text"
-          value={previas}
-          onChange={(e) => setPrevias(e.target.value)}
-          className="w-full border p-2 rounded"
-          placeholder="Ej: Matemática 1, Física"
+          className="w-full border p-2 rounded text-purple-600"
         />
       </div>
 
