@@ -1,88 +1,101 @@
 import React, { useState } from "react";
 
-export default function FormularioElectiva({ onAgregar, onCancelar }) {
+export default function FormularioElectivas({ onAgregar, onCancelar }) {
   const [nombre, setNombre] = useState("");
-  const [previas, setPrevias] = useState("");
   const [creditos, setCreditos] = useState("");
+  const [semestre, setSemestre] = useState("");
+  const [previas, setPrevias] = useState("");
 
-  // Cuando el usuario hace submit, convertimos previas a array y pasamos datos
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Limpiamos espacios y separamos por comas
-    const previasArray = previas
-      .split(",")
-      .map((p) => p.trim())
-      .filter((p) => p.length > 0);
+    if (!nombre.trim()) {
+      alert("El nombre de la materia es obligatorio");
+      return;
+    }
 
     const nuevaMateria = {
-      id: Date.now(), // ID temporal único (podés mejorar esto)
-      nombre,
-      previas: previasArray,
-      creditos: creditos ? Number(creditos) : null,
-      semestre: null,
-      tipo: "electiva",
+      id: `electiva-${Date.now()}`, // id único
+      nombre: nombre.trim(),
+      creditos: creditos ? Number(creditos) : undefined,
+      semestre: semestre ? Number(semestre) : undefined,
+      previas: previas
+        .split(",")
+        .map((p) => p.trim())
+        .filter((p) => p !== ""),
     };
 
     onAgregar(nuevaMateria);
 
-    // Limpio el formulario para la próxima vez
+    // Limpiar formulario
     setNombre("");
-    setPrevias("");
     setCreditos("");
+    setSemestre("");
+    setPrevias("");
   };
 
   return (
-    <form onSubmit={handleSubmit} className="p-4 border rounded shadow max-w-md">
-      <h3 className="text-lg font-bold mb-4">Agregar materia electiva</h3>
+    <form
+      onSubmit={handleSubmit}
+      className="bg-white text-black p-6 rounded shadow mb-6 max-w-md"
+    >
+      <h2 className="text-xl font-bold mb-4">Agregar materia electiva</h2>
 
-      <label className="block mb-2">
-        Nombre:
+      <div className="mb-4">
+        <label className="block mb-1">Nombre *</label>
         <input
           type="text"
           value={nombre}
           onChange={(e) => setNombre(e.target.value)}
+          className="w-full border p-2 rounded"
           required
-          className="w-full border px-2 py-1 rounded mt-1"
         />
-      </label>
+      </div>
 
-      <label className="block mb-2">
-        Previa(s) (separar con comas):
-        <input
-          type="text"
-          value={previas}
-          onChange={(e) => setPrevias(e.target.value)}
-          placeholder="Ej: Álgebra Lineal, Cálculo I"
-          className="w-full border px-2 py-1 rounded mt-1"
-        />
-      </label>
-
-      <label className="block mb-4">
-        Créditos:
+      <div className="mb-4">
+        <label className="block mb-1">Créditos</label>
         <input
           type="number"
           value={creditos}
           onChange={(e) => setCreditos(e.target.value)}
-          min="0"
-          className="w-full border px-2 py-1 rounded mt-1"
+          className="w-full border p-2 rounded"
         />
-      </label>
+      </div>
 
-      <div className="flex gap-4">
-        <button
-          type="submit"
-          className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
-        >
-          Agregar
-        </button>
+      <div className="mb-4">
+        <label className="block mb-1">Semestre</label>
+        <input
+          type="number"
+          value={semestre}
+          onChange={(e) => setSemestre(e.target.value)}
+          className="w-full border p-2 rounded"
+        />
+      </div>
 
+      <div className="mb-4">
+        <label className="block mb-1">Previas (separadas por coma)</label>
+        <input
+          type="text"
+          value={previas}
+          onChange={(e) => setPrevias(e.target.value)}
+          className="w-full border p-2 rounded"
+          placeholder="Ej: Matemática 1, Física"
+        />
+      </div>
+
+      <div className="flex gap-2 justify-end">
         <button
           type="button"
           onClick={onCancelar}
-          className="bg-gray-400 text-white px-4 py-2 rounded hover:bg-gray-500"
+          className="bg-gray-400 text-white px-4 py-2 rounded"
         >
           Cancelar
+        </button>
+        <button
+          type="submit"
+          className="bg-green-600 text-white px-4 py-2 rounded"
+        >
+          Guardar
         </button>
       </div>
     </form>

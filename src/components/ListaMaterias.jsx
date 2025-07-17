@@ -29,10 +29,10 @@ export default function ListaMaterias({ electivas = [] }) {
   }, [aprobadas, user]);
 
   const coloresPorSemestre = {
-    1: "bg-yellow-100",
-    2: "bg-green-100",
-    3: "bg-blue-100",
-    4: "bg-pink-100",
+    1: "bg-yellow-200",
+    2: "bg-green-200",
+    3: "bg-blue-200",
+    4: "bg-pink-200",
     5: "bg-purple-100",
     6: "bg-red-100",
     7: "bg-orange-100",
