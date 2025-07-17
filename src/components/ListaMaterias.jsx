@@ -1,22 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import materias from '../data/materias.json';
+import { auth, db } from '../firebase';
+import { doc, getDoc, setDoc } from "firebase/firestore";
 
 export default function ListaMaterias() {
   const [aprobadas, setAprobadas] = useState([]);
+  const user = auth.currentUser;
 
   const coloresPorSemestre = {
-    1: 'bg-yellow-100',
-    2: 'bg-green-100',
-    3: 'bg-blue-100',
-    4: 'bg-pink-100',
+    1: 'bg-yellow-500',
+    2: 'bg-green-300',
+    3: 'bg-blue-300',
+    4: 'bg-pink-300',
     5: 'bg-purple-100',
     6: 'bg-red-100',
     7: 'bg-orange-100',
     8: 'bg-cyan-100',
     9: 'bg-lime-100',
     10: 'bg-teal-100',
-    default: 'bg-gray-200',
+    default: 'bg-gray-400',
   };
+
+  // Cargar progreso al iniciar sesión
+  useEffect(() => {
+    if (!user) return;
+    const docRef = doc(db, "usuarios", user.uid);
+    getDoc(docRef).then(docSnap => {
+      if (docSnap.exists()) {
+        setAprobadas(docSnap.data().aprobadas || []);
+      }
+    });
+  }, [user]);
+
+  // Guardar progreso cuando cambia la lista de aprobadas
+  useEffect(() => {
+    if (!user) return;
+    const docRef = doc(db, "usuarios", user.uid);
+    setDoc(docRef, { aprobadas }, { merge: true });
+  }, [aprobadas, user]);
 
   const materiasPorSemestre = materias.reduce((acc, materia) => {
     const semestre = materia.semestre || 'Sin semestre';
@@ -25,13 +46,10 @@ export default function ListaMaterias() {
     return acc;
   }, {});
 
-  // Map por nombre (porque en tu JSON las previas están por nombre)
   const materiasPorNombre = new Map(materias.map((m) => [m.nombre, m]));
 
   const estaHabilitada = (materia) => {
     if (materia.previas.length === 0) return true;
-
-    // Todas las previas tienen que estar aprobadas
     return materia.previas.every((nombrePrevia) => {
       const previa = materiasPorNombre.get(nombrePrevia);
       return previa && aprobadas.includes(previa.id);
@@ -67,7 +85,7 @@ export default function ListaMaterias() {
                 } else if (habilitada) {
                   claseVisual = `hover:scale-[1.02] cursor-pointer ${color}`;
                 } else {
-                  claseVisual = 'bg-gray-200 opacity-40 cursor-not-allowed';
+                  claseVisual = 'bg-gray-300 opacity-40 cursor-not-allowed';
                 }
 
                 return (
@@ -81,7 +99,7 @@ export default function ListaMaterias() {
                     <h3 className="text-lg font-bold">{materia.nombre}</h3>
                     <p className="text-sm">Créditos: {materia.creditos ?? 'No asignado'}</p>
                     {materia.previas.length > 0 ? (
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-gray-400">
                         Previas: {materia.previas.join(', ')}
                       </p>
                     ) : (
