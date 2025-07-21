@@ -17,7 +17,7 @@ export default function FormularioElectivas({ onAgregar, onCancelar }) {
       id: `electiva-${Date.now()}`, // id único
       nombre: nombre.trim(),
       creditos: creditos ? Number(creditos) : undefined,
-      semestre: semestre ? Number(semestre) : undefined,
+      semestre: [],
       previas: [],
     };
 
@@ -54,16 +54,6 @@ export default function FormularioElectivas({ onAgregar, onCancelar }) {
           type="number"
           value={creditos}
           onChange={(e) => setCreditos(e.target.value)}
-          className="w-full border p-2 rounded text-purple-600"
-        />
-      </div>
-
-      <div className="mb-4">
-        <label className="block mb-1">Semestre</label>
-        <input
-          type="number"
-          value={semestre}
-          onChange={(e) => setSemestre(e.target.value)}
           className="w-full border p-2 rounded text-purple-600"
         />
       </div>

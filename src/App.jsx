@@ -13,8 +13,6 @@ function App() {
   const [mostrarFormularioElectivas, setMostrarFormularioElectivas] = useState(false);
   const [electivas, setElectivas] = useState([]);
 
-  // Login/Logout igual que antes...
-    // Login/Logout igual que antes...
   const login = async () => {
     try {
       const result = await signInWithPopup(auth, provider);
@@ -29,11 +27,11 @@ function App() {
       await signOut(auth);
       setUsuario(null);
       setCarreraSeleccionada("");
+      setElectivas([]);
     } catch (err) {
       console.error("Error al cerrar sesión:", err);
     }
   };
-
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
@@ -42,36 +40,41 @@ function App() {
       if (user) {
         const docRef = doc(db, "usuarios", user.uid);
         const docSnap = await getDoc(docRef);
+
         if (docSnap.exists()) {
-          setCarreraSeleccionada(docSnap.data().carrera || "");
-          setElectivas(docSnap.data().electivas || []);
+          const data = docSnap.data();
+          setCarreraSeleccionada(data.carrera || "");
+          setElectivas(data.electivas || []);
+        } else {
+          // solo crear si no existe, pero sin sobreescribir lo que se va a leer
+          await setDoc(docRef, {
+            carrera: "",
+            electivas: [],
+            aprobadas: []
+          });
         }
-      } else {
-        // Limpiar estado al cerrar sesión
-        setCarreraSeleccionada("");
-        setElectivas([]);
       }
     });
 
     return () => unsubscribe();
   }, []);
 
-  // Guardar carrera y electivas en Firestore
-  useEffect(() => {
+  const guardarCarrera = async (nuevaCarrera) => {
+    setCarreraSeleccionada(nuevaCarrera);
     if (usuario) {
       const docRef = doc(db, "usuarios", usuario.uid);
-      setDoc(
-        docRef,
-        { carrera: carreraSeleccionada, electivas },
-        { merge: true }
-      );
+      await setDoc(docRef, { carrera: nuevaCarrera }, { merge: true });
     }
-  }, [carreraSeleccionada, electivas, usuario]);
+  };
 
-  // Función para agregar electiva
-  const agregarElectiva = (nuevaElectiva) => {
-    setElectivas((prev) => [...prev, nuevaElectiva]);
+  const agregarElectiva = async (nuevaElectiva) => {
+    const nuevasElectivas = [...electivas, nuevaElectiva];
+    setElectivas(nuevasElectivas);
     setMostrarFormularioElectivas(false);
+    if (usuario) {
+      const docRef = doc(db, "usuarios", usuario.uid);
+      await setDoc(docRef, { electivas: nuevasElectivas }, { merge: true });
+    }
   };
 
   return (
@@ -89,7 +92,7 @@ function App() {
           {!carreraSeleccionada ? (
             <SelectorCarrera
               carreraSeleccionada={carreraSeleccionada}
-              setCarreraSeleccionada={setCarreraSeleccionada}
+              setCarreraSeleccionada={guardarCarrera}
             />
           ) : (
             <>
@@ -101,15 +104,12 @@ function App() {
               </button>
 
               {mostrarFormularioElectivas && (
-                
                 <FormularioElectivas
                   onAgregar={agregarElectiva}
                   onCancelar={() => setMostrarFormularioElectivas(false)}
                 />
-            )}
+              )}
 
-
-              {/* Pasamos electivas como prop a ListaMaterias */}
               <ListaMaterias electivas={electivas} />
             </>
           )}

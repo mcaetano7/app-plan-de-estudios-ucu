@@ -27,9 +27,9 @@ export default function ListaMaterias({ electivas = [] }) {
   }, [aprobadas, user]);
 
   const coloresPorSemestre = {
-    1: "bg-yellow-200",
-    2: "bg-green-200",
-    3: "bg-blue-200",
+    1: "bg-yellow-300",
+    2: "bg-green-300",
+    3: "bg-blue-300",
     4: "bg-pink-200",
     5: "bg-purple-100",
     6: "bg-red-100",
@@ -74,7 +74,7 @@ export default function ListaMaterias({ electivas = [] }) {
         .sort(([a], [b]) => (a === "Sin semestre" ? 999 : a) - (b === "Sin semestre" ? 999 : b))
         .map(([semestre, lista]) => (
           <div key={semestre} className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4 text-blue-700">
+            <h2 className="text-2xl font-semibold mb-4 text-purple-700">
               Semestre {semestre}
             </h2>
             <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
@@ -90,7 +90,7 @@ export default function ListaMaterias({ electivas = [] }) {
                 } else if (habilitada) {
                   claseVisual = `hover:scale-[1.02] cursor-pointer ${color}`;
                 } else {
-                  claseVisual = "bg-gray-200 opacity-40 cursor-not-allowed";
+                  claseVisual = "bg-gray-300 opacity-40 cursor-not-allowed";
                 }
 
                 return (
